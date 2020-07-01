@@ -41,17 +41,17 @@ export default class Login extends React.Component {
           <div className="card">
             <div className="card-header">
               <h3>Sign In</h3>
-              {/*<div className="d-flex justify-content-end social_icon">*/}
-              {/*  <span>*/}
-              {/*    <i className="fab fa-facebook-square" />*/}
-              {/*  </span>*/}
-              {/*  <span>*/}
-              {/*    <i className="fab fa-google-plus-square" />*/}
-              {/*  </span>*/}
-              {/*  <span>*/}
-              {/*    <i className="fab fa-twitter-square" />*/}
-              {/*  </span>*/}
-              {/*</div>*/}
+              {/* <div className="d-flex justify-content-end social_icon"> */}
+              {/*  <span> */}
+              {/*    <i className="fab fa-facebook-square" /> */}
+              {/*  </span> */}
+              {/*  <span> */}
+              {/*    <i className="fab fa-google-plus-square" /> */}
+              {/*  </span> */}
+              {/*  <span> */}
+              {/*    <i className="fab fa-twitter-square" /> */}
+              {/*  </span> */}
+              {/* </div> */}
             </div>
             <div className="card-body">
               {/* <form> */}
@@ -93,10 +93,10 @@ export default class Login extends React.Component {
                   onChange={this.onChangePassword}
                 />
               </div>
-              {/*<div className="row align-items-center remember">*/}
-              {/*  <input type="checkbox" value="Remember Me" />*/}
-              {/*  CheckMe*/}
-              {/*</div>*/}
+              {/* <div className="row align-items-center remember"> */}
+              {/*  <input type="checkbox" value="Remember Me" /> */}
+              {/*  CheckMe */}
+              {/* </div> */}
               <div
                 className="form-group"
                 onClick={() =>
@@ -112,20 +112,20 @@ export default class Login extends React.Component {
               {/* </form> */}
             </div>
             <div className="card-footer">
-              {/*<div className="d-flex justify-content-center links">*/}
-              {/*  Don't have an account?*/}
-              {/*  <a*/}
-              {/*    style={{*/}
-              {/*      marginTop: -1,*/}
-              {/*    }}*/}
-              {/*    href="#"*/}
-              {/*  >*/}
-              {/*    Sign Up*/}
-              {/*  </a>*/}
-              {/*</div>*/}
-              {/*<div className="d-flex justify-content-center">*/}
-              {/*  <a href="#">Forgot your password?</a>*/}
-              {/*</div>*/}
+              {/* <div className="d-flex justify-content-center links"> */}
+              {/*  Don't have an account? */}
+              {/*  <a */}
+              {/*    style={{ */}
+              {/*      marginTop: -1, */}
+              {/*    }} */}
+              {/*    href="#" */}
+              {/*  > */}
+              {/*    Sign Up */}
+              {/*  </a> */}
+              {/* </div> */}
+              {/* <div className="d-flex justify-content-center"> */}
+              {/*  <a href="#">Forgot your password?</a> */}
+              {/* </div> */}
             </div>
           </div>
         </div>

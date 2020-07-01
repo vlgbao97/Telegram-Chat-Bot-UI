@@ -5,7 +5,7 @@
  *
  */
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 import Loader from 'react-loader-spinner';
@@ -16,8 +16,8 @@ import {
   fetchListUser,
   sendNews,
 } from '../../action/LocalAction';
-import history from "../../utils/history";
-import message from "../../images/message.png";
+import history from '../../utils/history';
+import message from '../../images/message.png';
 
 export default function ManagerMessage() {
   const divStyle = {
@@ -36,8 +36,8 @@ export default function ManagerMessage() {
   useEffect(() => {
     const UserProfile = JSON.parse(localStorage.getItem('UserProfile'));
     setVisible(true);
-    fetchListHistoryNews({token: UserProfile.token}, result => {
-      console.log({result});
+    fetchListHistoryNews({ token: UserProfile.token }, result => {
+      console.log({ result });
       setVisible(false);
       if (result && result.data) {
         setData(result.data);
@@ -63,8 +63,8 @@ export default function ManagerMessage() {
     } else {
       setVisibleButton(true);
       const UserProfile = JSON.parse(localStorage.getItem('UserProfile'));
-      sendNews({message: text, token: UserProfile.token}, resultSend => {
-        console.log({resultSend});
+      sendNews({ message: text, token: UserProfile.token }, resultSend => {
+        console.log({ resultSend });
         if (resultSend && resultSend.message === 'Send news successfully') {
           setText('');
           setShowAlert(true);
@@ -75,8 +75,8 @@ export default function ManagerMessage() {
           }, 2000);
           setVisibleButton(false);
           setVisible(true);
-          fetchListHistoryNews({token: UserProfile.token}, result => {
-            console.log({result});
+          fetchListHistoryNews({ token: UserProfile.token }, result => {
+            console.log({ result });
             setVisible(false);
             if (result && result.data) {
               setData(result.data);
@@ -106,7 +106,7 @@ export default function ManagerMessage() {
         border: '5px solid',
       }}
     >
-      <div style={{height: '200px', overflowY: 'scroll'}}>
+      <div style={{ height: '200px', overflowY: 'scroll' }}>
         {data.map((item, i) => (
           <div
             style={{
@@ -115,23 +115,28 @@ export default function ManagerMessage() {
               justifyContent: 'space-between',
               borderBottom: '2px solid',
             }}
-          ><div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-            <img
-              onClick={() => {
-                history.push('/');
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
               }}
-              style={{height: '20px', width: '20px'}}
-              src={message}
-              alt="tdtLogo"
             >
-            </img>
-            <p style={styles.pStyle}>
-              {item.text}</p>
-          </div>
+              <img
+                onClick={() => {
+                  history.push('/');
+                }}
+                style={{ height: '20px', width: '20px' }}
+                src={message}
+                alt="tdtLogo"
+              />
+              <p style={styles.pStyle}>{item.text}</p>
+            </div>
             <p style={styles.pStyle}>{item.createdAt}</p>
           </div>
         ))}
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Loader
             visible={visible}
             type="ThreeDots"
@@ -141,7 +146,7 @@ export default function ManagerMessage() {
           />
         </div>
       </div>
-      <form style={{marginTop: '20px'}}>
+      <form style={{ marginTop: '20px' }}>
         <label
           style={{
             display: 'flex',
@@ -157,7 +162,7 @@ export default function ManagerMessage() {
             }}
           >
             <input
-              style={{marginLeft: '5px', width: '300px', paddingLeft: '10px'}}
+              style={{ marginLeft: '5px', width: '300px', paddingLeft: '10px' }}
               type="text"
               name="name"
               value={text}
@@ -165,7 +170,7 @@ export default function ManagerMessage() {
             />
             {visibleButton === false ? (
               <img
-                style={{height: '30px', width: '30px'}}
+                style={{ height: '30px', width: '30px' }}
                 src={logo}
                 alt="Logo"
                 onClick={handleOnPressSubmit}
@@ -193,6 +198,6 @@ const styles = {
   pStyle: {
     fontSize: '15px',
     textAlign: 'flex',
-    marginTop : '5px'
+    marginTop: '5px',
   },
 };

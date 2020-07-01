@@ -180,7 +180,7 @@ export const fetchDashBoard = ({ token }, callback) => {
 };
 
 export const fetchListHistoryUserById = ({ token, id }, callback) => {
-  console.log('dasdasdasdasdasdasdas')
+  console.log('dasdasdasdasdasdasdas');
   fetch(
     `${API_URL}${GET_LIST_HISTORY_USER_BY_ID}?secret_token=${token}&id=${id}`,
     {

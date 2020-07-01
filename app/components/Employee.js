@@ -1,9 +1,9 @@
 import * as React from 'react';
 import logo from '../images/telegram.png';
 import excelDownload from '../images/exceldownload.png';
-import history from "../utils/history";
-import user from "../images/user.png";
-import id from "../images/id.png";
+import history from '../utils/history';
+import user from '../images/user.png';
+import id from '../images/id.png';
 
 export default class Employee extends React.Component {
   render() {
@@ -20,23 +20,21 @@ export default class Employee extends React.Component {
       >
         <div>
           <div>
-            {/*<b>Tên:</b>*/}
+            {/* <b>Tên:</b> */}
             <img
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={user}
               alt="tdtLogo"
-            >
-            </img>
+            />
             {this.props.first_name} {this.props.last_name}
           </div>
           <div>
             <img
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={id}
               alt="tdtLogo"
-            >
-            </img>
-             {this.props.id}
+            />
+            {this.props.id}
           </div>
         </div>
         <div>

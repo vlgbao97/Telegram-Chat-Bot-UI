@@ -7,8 +7,8 @@
  *
  */
 
-import React, {useState} from 'react';
-import {Switch, Route, NavLink} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import './appStyle.css';
 import HomePage from '../HomePage/Loadable';
 import NotFoundPage from '../NotFoundPage/Loadable';
@@ -23,14 +23,14 @@ import ManagerMessage from '../ManagerMessage/Loadable';
 import exportExcel from '../ExportExcet/Loadable';
 import SendMessageToUser from '../sendMessageToUser/Loadable';
 import history from '../../utils/history';
-import {fetchLogin} from '../../action/LocalAction';
-import tdtLogo from "../../images/bot.png";
-import processing from "../../images/processing.png";
-import send_news from "../../images/newMessage.png";
-import managerUser from "../../images/managerUser.png";
-import exportExcelImg from "../../images/exceldownload.png";
-import logout from "../../images/logout.png";
-import background from "../../images/background.jpg";
+import { fetchLogin } from '../../action/LocalAction';
+import tdtLogo from '../../images/bot.png';
+import processing from '../../images/processing.png';
+import send_news from '../../images/newMessage.png';
+import managerUser from '../../images/managerUser.png';
+import exportExcelImg from '../../images/exceldownload.png';
+import logout from '../../images/logout.png';
+import background from '../../images/background.jpg';
 
 const mql = window.matchMedia(`(min-width: 1000px)`);
 
@@ -49,14 +49,14 @@ export default class App extends React.Component {
 
   componentWillMount() {
     const my_object = JSON.parse(localStorage.getItem('UserProfile'));
-    console.log({my_object});
+    console.log({ my_object });
     if (my_object !== null) {
       history.push('/');
       this.setState({
         isLogin: false,
       });
     } else {
-      history.replace({pathname: '/login'});
+      history.replace({ pathname: '/login' });
       this.setState({
         isLogin: true,
       });
@@ -72,11 +72,11 @@ export default class App extends React.Component {
   }
 
   onSetSidebarOpen(open) {
-    this.setState({sidebarOpen: open});
+    this.setState({ sidebarOpen: open });
   }
 
   mediaQueryChanged() {
-    this.setState({sidebarDocked: mql.matches, sidebarOpen: false});
+    this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
   }
 
   getNavLinkClass = path =>
@@ -86,50 +86,54 @@ export default class App extends React.Component {
     const r = window.confirm('Bạn có chắc chắn muốn đăng xuất?');
     if (r === true) {
       localStorage.removeItem('UserProfile');
-      history.replace({pathname: '/login'});
+      history.replace({ pathname: '/login' });
       this.setState({
         isLogin: true,
       });
     } else {
-      history.goBack()
+      history.goBack();
     }
   };
 
   renderSideBar = () => (
     <div>
-      <label className="logo" style={{
-        display: 'flex',
-        alignItems: 'center',
-        width: '100%'
-      }}>
+      <label
+        className="logo"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+        }}
+      >
         <img
           onClick={() => {
             history.push('/');
           }}
-          style={{height: '50px', width: '50px'}}
+          style={{ height: '50px', width: '50px' }}
           src={tdtLogo}
           alt="tdtLogo"
-        >
-        </img>
+        />
         <a
           onClick={() => {
             history.push('/');
           }}
-          type="button" style={{
-          width: '100%',
-          // backgroundColor: '#F6F6F6',
-          color: '#caae1b',
-          fontSize: '24px',
-          fontFamily: 'Cochin'
-          // padding: '8px 15px',
-          // boxSizing: 'content-box',
-          // position: 'fixed',
-          // display: 'block'
-        }}>
+          type="button"
+          style={{
+            width: '100%',
+            // backgroundColor: '#F6F6F6',
+            color: '#caae1b',
+            fontSize: '24px',
+            fontFamily: 'Cochin',
+            // padding: '8px 15px',
+            // boxSizing: 'content-box',
+            // position: 'fixed',
+            // display: 'block'
+          }}
+        >
           TDTCHATBOT
         </a>
       </label>
-      <ul style={{width: '100%'}}>
+      <ul style={{ width: '100%' }}>
         <li className={this.getNavLinkClass('/')}>
           <NavLink
             activeClassName="active"
@@ -138,16 +142,16 @@ export default class App extends React.Component {
             style={{
               display: 'flex',
               alignItems: 'center',
-          }}>
+            }}
+          >
             <img
               onClick={() => {
                 history.push('/');
               }}
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={processing}
               alt="tdtLogo"
-            >
-            </img>
+            />
             Quản lý tác vụ
           </NavLink>
         </li>
@@ -162,11 +166,10 @@ export default class App extends React.Component {
             to="/managerMessage"
           >
             <img
-              style={{height: '20px', width: '20px', marginBottom: '10px'}}
+              style={{ height: '20px', width: '20px', marginBottom: '10px' }}
               src={send_news}
               alt="tdtLogo"
-            >
-            </img>
+            />
             Gửi tin nhắn mới
           </NavLink>
         </li>
@@ -185,11 +188,10 @@ export default class App extends React.Component {
             to="/managerEmployee"
           >
             <img
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={managerUser}
               alt="tdtLogo"
-            >
-            </img>
+            />
             Quản lý người dùng
           </NavLink>
         </li>
@@ -204,30 +206,31 @@ export default class App extends React.Component {
             to="/exportExcel"
           >
             <img
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={exportExcelImg}
               alt="tdtLogo"
-            >
-            </img>
+            />
             Xuất excel tất cả tin
           </NavLink>
         </li>
-        <li className={this.getNavLinkClass('/abc')} onClick={this.onPressLogout}>
+        <li
+          className={this.getNavLinkClass('/abc')}
+          onClick={this.onPressLogout}
+        >
           <NavLink
-                   activeClassName="active"
-                   exact
-                   style={{
-                     display: 'flex',
-                     alignItems: 'center',
-                   }}
-                   to="/abc"
+            activeClassName="active"
+            exact
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            to="/abc"
           >
             <img
-              style={{height: '20px', width: '20px'}}
+              style={{ height: '20px', width: '20px' }}
               src={logout}
               alt="tdtLogo"
-            >
-            </img>
+            />
             Đăng Xuất
           </NavLink>
         </li>
@@ -236,17 +239,17 @@ export default class App extends React.Component {
   );
 
   onPressLogin = (email, password) => {
-    console.log({email, password});
+    console.log({ email, password });
     const dataToSend = {
       email,
       password,
     };
     //
     fetchLogin(dataToSend, result => {
-      console.log({result});
+      console.log({ result });
       if (result.message) {
         localStorage.setItem('UserProfile', JSON.stringify(result));
-        history.push({pathname: '/'});
+        history.push({ pathname: '/' });
         this.setState({
           isLogin: false,
         });
@@ -259,14 +262,16 @@ export default class App extends React.Component {
   render() {
     const UserProfile = JSON.parse(localStorage.getItem('UserProfile'));
     return (
-      <div style={{
-        margin: '-10',
-        display: 'block'
-      }}>
+      <div
+        style={{
+          margin: '-10',
+          display: 'block',
+        }}
+      >
         {this.state.isLogin === true ? (
           <Switch>
             <Route path="/login">
-              <Login onPressLogin={this.onPressLogin}/>
+              <Login onPressLogin={this.onPressLogin} />
             </Route>
           </Switch>
         ) : (
@@ -275,22 +280,26 @@ export default class App extends React.Component {
             open={this.state.sidebarOpen}
             onSetOpen={this.onSetSidebarOpen}
             docked={this.state.sidebarDocked}
-            styles={{sidebar: {background: '#13553c'}}}
+            styles={{ sidebar: { background: '#13553c' } }}
           >
             <div>
               {this.state.sidebarOpen === false ? (
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <button
-                    style={{marginLeft: '0.2%'}}
+                    style={{ marginLeft: '0.2%' }}
                     onClick={() =>
-                      this.setState({sidebarDocked: !this.state.sidebarDocked})
+                      this.setState({
+                        sidebarDocked: !this.state.sidebarDocked,
+                      })
                     }
-                    className={'success'}
-                    role={'button'}
+                    className="success"
+                    role="button"
                   >
                     <img
                       src={require('../../images/menu.png')}
@@ -299,23 +308,23 @@ export default class App extends React.Component {
                       height="20px"
                     />
                   </button>
-                  <p style={{color: 'blue'}}>
+                  <p style={{ color: 'blue' }}>
                     {UserProfile.user.role.toUpperCase()}
                   </p>
                 </div>
               ) : null}
               <Switch>
-                <Route path="/" exact component={HomePage}/>
-                <Route path="/managerMessage" component={ManagerMessage}/>
-                <Route path="/managerEmployee" component={managerEmployee}/>
+                <Route path="/" exact component={HomePage} />
+                <Route path="/managerMessage" component={ManagerMessage} />
+                <Route path="/managerEmployee" component={managerEmployee} />
                 <Route
                   path="/sendMessageToUser"
                   component={SendMessageToUser}
                 />
-                <Route path="/exportExcel" component={exportExcel}/>
-                <Route path="" component={NotFoundPage}/>
+                <Route path="/exportExcel" component={exportExcel} />
+                <Route path="" component={NotFoundPage} />
               </Switch>
-              <GlobalStyle/>
+              <GlobalStyle />
             </div>
           </Sidebar>
         )}

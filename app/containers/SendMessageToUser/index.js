@@ -5,7 +5,7 @@
  *
  */
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import Alert from 'react-bootstrap/Alert';
 import logo from '../../images/send.png';
@@ -15,17 +15,17 @@ import {
   sendNews,
   sendNewsById,
 } from '../../action/LocalAction';
-import user from "../../images/user.png";
-import user_new from "../../images/user1.png";
-import bot from "../../images/bot.png";
+import user from '../../images/user.png';
+import user_new from '../../images/user1.png';
+import bot from '../../images/bot.png';
 
 export default function SendMessageToUser(props) {
   const divStyle = {
     margin: '40px',
     border: '5px solid pink',
   };
-  const {state} = props.location;
-  console.log({state});
+  const { state } = props.location;
+  console.log({ state });
 
   const [data, setData] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -38,8 +38,10 @@ export default function SendMessageToUser(props) {
   useEffect(() => {
     const UserProfile = JSON.parse(localStorage.getItem('UserProfile'));
     setVisible(true);
-    fetchListHistoryUserById({id: state.employee._id, token: UserProfile.token}, (result) => {
-        console.log({result});
+    fetchListHistoryUserById(
+      { id: state.employee._id, token: UserProfile.token },
+      result => {
+        console.log({ result });
         setVisible(false);
         if (result && result.data) {
           setData(result.data);
@@ -73,9 +75,12 @@ export default function SendMessageToUser(props) {
           id: state.employee._id,
         },
         resultSend => {
-          console.log({resultSend});
+          console.log({ resultSend });
           setVisibleButton(false);
-          if (resultSend && resultSend.message === "Send message successfully!") {
+          if (
+            resultSend &&
+            resultSend.message === 'Send message successfully!'
+          ) {
             setText('');
             setShowAlert(true);
             setVariant('success');
@@ -84,20 +89,23 @@ export default function SendMessageToUser(props) {
               setShowAlert(false);
             }, 2000);
             setVisible(true);
-            fetchListHistoryUserById({id: state.employee._id,token: UserProfile.token}, result => {
-              console.log({result});
-              setVisible(false);
-              if (result && result.data) {
-                setData(result.data);
-              } else {
-                setShowAlert(true);
-                setVariant('danger');
-                setTextAlert('Không thể lấy được dữ liệu!');
-                setTimeout(() => {
-                  setShowAlert(false);
-                }, 2000);
-              }
-            });
+            fetchListHistoryUserById(
+              { id: state.employee._id, token: UserProfile.token },
+              result => {
+                console.log({ result });
+                setVisible(false);
+                if (result && result.data) {
+                  setData(result.data);
+                } else {
+                  setShowAlert(true);
+                  setVariant('danger');
+                  setTextAlert('Không thể lấy được dữ liệu!');
+                  setTimeout(() => {
+                    setShowAlert(false);
+                  }, 2000);
+                }
+              },
+            );
           } else {
           }
         },
@@ -118,13 +126,13 @@ export default function SendMessageToUser(props) {
     >
       <div>
         <img
-          style={{height: '20px', width: '20px'}}
+          style={{ height: '20px', width: '20px' }}
           src={user}
           alt="tdtLogo"
-        >
-        </img> {state.employee.first_name} {state.employee.last_name}
+        />{' '}
+        {state.employee.first_name} {state.employee.last_name}
       </div>
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Loader
           visible={visible}
           type="ThreeDots"
@@ -133,7 +141,7 @@ export default function SendMessageToUser(props) {
           width="50"
         />
       </div>
-      <div style={{height: '200px', overflowY: 'scroll'}}>
+      <div style={{ height: '200px', overflowY: 'scroll' }}>
         {data.map((item, i) => (
           <div
             key={i}
@@ -145,25 +153,23 @@ export default function SendMessageToUser(props) {
             }}
           >
             {item.action !== 'response' ? (
-              <div style={{display : 'flex', flexDirection: 'row'}}>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <img
-                  style={{height: '20px', width: '20px'}}
+                  style={{ height: '20px', width: '20px' }}
                   src={user_new}
                   alt="tdtLogo"
-                >
-                </img>
+                />
                 <p style={styles.pStyle}>
                   {item.telegram_user} : {item.text}
                 </p>
               </div>
             ) : (
-              <div style={{display : 'flex', flexDirection: 'row'}}>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <img
-                  style={{height: '20px', width: '20px'}}
+                  style={{ height: '20px', width: '20px' }}
                   src={bot}
                   alt="tdtLogo"
-                >
-                </img>
+                />
                 <p style={styles.pStyle}>Bot Telegram : {item.text}</p>
               </div>
             )}
@@ -171,7 +177,7 @@ export default function SendMessageToUser(props) {
           </div>
         ))}
       </div>
-      <form style={{marginTop: '20px'}}>
+      <form style={{ marginTop: '20px' }}>
         <label
           style={{
             display: 'flex',
@@ -187,7 +193,7 @@ export default function SendMessageToUser(props) {
             }}
           >
             <input
-              style={{marginLeft: '5px', width: '300px', paddingLeft: '10px'}}
+              style={{ marginLeft: '5px', width: '300px', paddingLeft: '10px' }}
               type="text"
               name="name"
               value={text}
@@ -195,7 +201,7 @@ export default function SendMessageToUser(props) {
             />
             {visibleButton === false ? (
               <img
-                style={{height: '30px', width: '30px'}}
+                style={{ height: '30px', width: '30px' }}
                 src={logo}
                 alt="Logo"
                 onClick={handleOnPressSubmit}
@@ -223,6 +229,6 @@ const styles = {
   pStyle: {
     fontSize: '15px',
     textAlign: 'flex',
-    marginTop : '5px'
+    marginTop: '5px',
   },
 };

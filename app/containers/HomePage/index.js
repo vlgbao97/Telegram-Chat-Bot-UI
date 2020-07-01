@@ -5,12 +5,12 @@
  *
  */
 
-import React, {useEffect, useState} from 'react';
-import {fetchDashBoard, fetchListHistoryNews} from '../../action/LocalAction';
+import React, { useEffect, useState } from 'react';
 // import { FormattedMessage } from 'react-intl';
 // import messages from './messages';
 import Alert from 'react-bootstrap/Alert';
 import Loader from 'react-loader-spinner';
+import { fetchDashBoard, fetchListHistoryNews } from '../../action/LocalAction';
 
 export default function HomePage() {
   const divStyle = {
@@ -30,22 +30,23 @@ export default function HomePage() {
   const [variant, setVariant] = useState('success');
   const [textAlert, setTextAlert] = useState('');
 
+
   useEffect(() => {
     const UserProfile = JSON.parse(localStorage.getItem('UserProfile'));
     setVisible(true);
     setVisibleButton(true);
-    fetchDashBoard({token: UserProfile.token}, result => {
-      console.log({result});
+    fetchDashBoard({ token: UserProfile.token }, result => {
+      console.log({ result });
       setVisible(false);
       setVisibleButton(false);
       if (result && result.data) {
-        setData(result.data)
+        setData(result.data);
       } else {
         setVariant('danger');
         setShowAlert(true);
         setTextAlert('Không thể lấy được dữ liệu!');
         setTimeout(() => {
-          setShowAlert(false)
+          setShowAlert(false);
         }, 2000);
       }
     });
@@ -58,14 +59,12 @@ export default function HomePage() {
         border: '5px solid',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
       <div style={styles.containerMess}>
         <p style={styles.textTitle}>Số lượng tin nhắn</p>
-        <div style={{ borderBottom: '2px solid white',
-          width : '100%'}}>
-        </div>
+        <div style={{ borderBottom: '2px solid white', width: '100%' }} />
         <Loader
           type="Puff"
           color="#00BFFF"
@@ -84,9 +83,7 @@ export default function HomePage() {
       </div>
       <div style={styles.containerUser}>
         <p style={styles.textTitle}>Số lượng người dùng</p>
-        <div style={{ borderBottom: '2px solid white',
-          width : '100%'}}>
-        </div>
+        <div style={{ borderBottom: '2px solid white', width: '100%' }} />
         <Loader
           type="Puff"
           color="#00BFFF"
