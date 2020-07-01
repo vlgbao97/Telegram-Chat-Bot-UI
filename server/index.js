@@ -1,4 +1,5 @@
 /* eslint consistent-return:0 import/order:0 */
+const cors = require('cors');
 
 const express = require('express');
 const logger = require('./logger');
@@ -14,6 +15,8 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+app.use(cors());
+
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
@@ -27,6 +30,21 @@ setup(app, {
 const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
+
+app.options('/*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, Content-Length, X-Requested-With',
+  );
+  res.sendStatus(200);
+});
+
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // use the gzipped bundle
 app.get('*.js', (req, res, next) => {
